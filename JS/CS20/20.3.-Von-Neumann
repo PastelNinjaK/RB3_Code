@@ -1,0 +1,222 @@
+// Von Nuemann
+
+function setup() {
+  createCanvas(800, 800);
+  
+  textAlign(CENTER);
+}
+
+function draw() {
+  background(255);
+  
+  
+  textSize(12)
+  let x = 10;
+  let y = 60;
+  let h = 400;
+  let w = 300;
+  let noArrow = 10000;
+ // CPU
+  let text1Array = ["CPU","Control unit","Arthmatic logic Unit","Cache","Clock","Resgister","Accumulator","Program Counter","Memory data register","memory adress register","RAM","Adress & data"];
+  let text2Array = ["CPU or Centarl processing unit is the device that proccess information","The control unit controls the operation of the computer's ALU\n, memory and input/output devices\nand also contains the CIR (Current instruction register)","The unit of a computer which carries out arithmetic and logical operations.","It is the supplementary memory system that temporarily stores\n frequently used instructions and data for quicker processing\nby the central processing unit (CPU) of a computer","The internal timming device","A register is a small, fast unit of storage used to\nhold program data and the instructions that are being executed by the ALU.","The Accumulator holds the result of the calculations ","The Program Counter holds the adress of next instruction\nto be executed in memory. This is the start of the Fetch stage","The memory data holds the data to be fetched from\nor to be written to memory","The Memory Adress Register holds the address to be fetched from\nor to be written to memory","The RAM stores program instructions, data, and intermediate results during the execution of a program."];
+
+  let text3Array = ["load adress","Add Adress 6 "," Stores in 6","End","12","23"];
+  let text4Array = ["Oprand and Opcode","Opcode","Oprand"]
+  
+  
+
+  let box1Array = ["Fetch","1","2","3","4"]
+  let box2Array = ["Decode","1","2","3"]
+  let box3Array = ["Execute","1","2","3","4","5"]
+
+  // Boxes
+  boxes(x, y, w, h, text1Array[0], text2Array[0], 4, 100, 15); // CPU box
+  boxes(x * 4,y + 10,w / 4,h / 8,text1Array[1],text2Array[1],255,255,255,20); //Control unit box
+  boxes(x * 20 - 5,y + 10,w / 4,h / 8,text1Array[2],text2Array[2],255,255,255,20); // Arthmatic logic Unit box
+  boxes(x * 4,y * 6.5,w / 4,h / 8,text1Array[3],text2Array[3],255,255,255,20); // Cache box
+  boxes(x * 20 - 5,y * 6.5,w / 4,h / 8,text1Array[4],text2Array[4],255,255,255,20); // Clock box
+
+  // Resgister
+  boxes(x + 10,y + 70,w - 20,h / 2,text1Array[5],text2Array[5],28,123,119,40); // Resgister Box
+  boxes(x + 30,y + 90,w / 4,h / 8,text1Array[6],text2Array[6],255,0,0,20); // Accumulator box
+  boxes(x + 30,y + 180,w / 4,h / 8,text1Array[7],text2Array[7],0,0,255,20,500); // Program Counter box
+  boxes(x * 20 - 5,y + 180,w / 4,h / 8,text1Array[8],text2Array[8],255,255,0,40,500); // Memory data box
+  boxes(x * 20 - 5,y + 90,w / 4,h / 8,text1Array[9],text2Array[9],0,255,0,40,500); // memory adress register box
+
+  // Ram
+  boxes(x ** 2.6, y, w, h, text1Array[10], text2Array[10], 4, 100, 15, 10, 420); // ram box
+  boxes(420, 70, 260, 380, text1Array[11], "", 255, 255, 255); // chart
+  line(420 + 260 / 2, 70, 420 + 260 / 2, 450); // chart midline
+
+  //for loops
+  for (let i = 0; i < 6; i++) {
+    text(i + 1, 470, 150 + i * 50);
+  } // end of for
+
+  for (let i = 0; i < 7; i++) {
+    line(420, 120 + (450 * i) / 9, 680, 120 + (450 * i) / 9);
+  } // end of for
+
+  for (let i = 0; i < text3Array.length; i++) {
+    text(text3Array[i], 610, i * 50 + 145);
+  } // end of for
+  
+
+  
+  // fetch stage
+  fill(255)
+  rect(20,495,110,110,5)
+    
+    for(let i = 0; i < 5; i++){
+      fill(255)
+      rect(25,500 + i*20,100,15,5)
+      fill(0)
+      text(box1Array[i],75,512.5 + i*20)
+    
+    }// end of for
+    fill(255)
+    rect(400,495,300,126,5)
+   // fetch stage arrows 
+  arrow(25,520,100,15,110, 242, 190, 175,1,1) // program counter
+  arrow(25,535,100,15,270, 170, 400, 170,2,1) // MAR
+  
+
+  // ram to control unit & vise versa
+  arrow(25, 560, 100,15,240, 360, 400, 360,0); // control unit1
+  arrow(25, 560, 100,15,120, 95, 220, 360,0); // cotrol 1
+  arrow(25, 560, 100,15,240, 360, 400, 360,0,1); // control unit1
+  arrow(25, 560, 100,15,120, 95, 220, 360,3,1); // cotrol 1
+
+
+  // ram to memory data register
+  arrow(25, 580, 100,15,280, 265, 400, 265,4); // memory data register
+
+  
+  
+  
+  // decode stage
+  fill(255);
+  rect(150,495,110,90,5);
+    
+    for(let i = 0; i< 4; i++){
+      fill(255)
+      rect(155,500 + i*20,100,15,5)
+      fill(0)
+      text(box2Array[i],205,512.5 + i*20)
+    }// end of for
+  
+  // memory data register to CIR
+  arrow(160 ,521, 100,15,112, 94, 200, 261,5);
+  
+  arrow(160,545,100,15,100, 100, 100, 100,6)  
+  
+  // CIR to control Unit
+  arrow(160,560,100,15,50, 100, 50, 100,7,1)  
+
+  // execute stage
+  fill(255)
+  rect(275,495,110,130,5)
+    
+    for(let i = 0; i < 6; i++){
+      fill(255)
+      rect(280,500 + i*20,100,15,5)
+      fill(0)
+      text(box3Array[i],330,512.5 + i*20)
+    
+    }//end of for
+  
+  // CIR to MAR
+  arrow(275,520,100,15,114,93,200,180,8,1)
+  
+  // MAR to RAM
+  arrow(275,535,100,15,270, 170, 400, 170,9,1)
+  
+  // ram to control unit & vise versa
+  arrow(275, 560, 100,15,240, 360, 400, 360,0); // control unit1
+  arrow(275, 560, 100,15,120, 95, 220, 360,0); // cotrol 1
+  arrow(275, 560, 100,15,240, 360, 400, 360,0,1); // control unit1
+  arrow(275, 560, 100,15,120, 95, 220, 360,10,1); // cotrol 1
+  
+  // ram to memory data register
+  arrow(275, 580, 100,15,280, 265, 400, 265,11); // memory data register
+  
+  // MDR to Accumulator
+  
+  arrow(275, 605, 100,15,105,180,200,265,12)
+
+  
+  
+  // Opcode and Oprand
+  
+  fill(255);
+  rect(x+10,700,110,70,5);
+    
+    for(let i = 0; i< 3; i++){
+      fill(255)
+      rect(x+15,705 + i*20,100,15,5)
+      fill(0)
+      textSize(10)
+      text(text4Array[i],75,715 + i*20)
+    }// end of for
+  
+  textSize(12)
+  arrow(32,725,100,15,1000,1000,10000,10000,13,1)
+  arrow(32,745,100,15,1000,1000,10000,10000,14,1)
+} // end draw
+
+
+
+
+
+
+function boxes(x,y,w,h,text1,text2,r = 0,g = 0,b = 0,descriptY = 10,descriptX = 200) {
+  if (mouseX < x + w && mouseX > x && mouseY < y + h && mouseY > y) {
+    fill(r, g, b);
+  } else {
+    fill(255, 255, 255);
+  } // end of if
+
+  rect(x, y, w, h, 5);
+
+  if (mouseX < x + w && mouseX > x && mouseY < y + h && mouseY > y) {
+    fill(0);
+    text(text1, mouseX, mouseY);
+    text(text2, descriptX, descriptY);
+  } // end of if
+} // end of boxes
+
+
+
+
+function arrow(x ,y,w,h,startX,startY,endX,endY,no,arrow){
+  let textArray = [" ","The Program Counter is checked for the adress\nof next instruction to be executed in memory\nThis is the start of the Fetch stage","The MAR(Memory Adress Register) holds the instruction\nto be fetched from or to be written to memory","The CU (Control Unit) send a read signal along the control bus to main memory","The instruction will be colected from the main memory and be transfered via main bus to the MDR(memory data register) and the program counter will be updated so that it contains the adress of the next instruction to be executed.","The data is sent from the MDR(memory data register) to the CIR(current instruction register) where it is split into the opcode and operand","The opcode will identify the operation to be performed by the CPU and the operand contains the data or memory address on which the operation specified by the opcode will be performed.","The data will be sent to the control unit and decoded.","The adress from the operand will be set to the MAR(memory adress register).","The adress will be sent from the MAR to the main memory.","The control unit sends a read along signal to the main memory","The data in the adress sent out the main memory is retrived and sent to the MDR(memoryadress register)","The content of MDR is coppied and sent to the Accumulator and the cyle is finished.","Opcode stands for operation code. It is given command to a computer processor to perform a certain operation such as addition, subtraction, loading data and more. Each opcode has a particular operation that the processor can do.","The operand is the data or location of the data which the opcode operates. It takes many forms such as constant value, a register, a memory address, or some other data source."]
+                   
+
+
+  if(mouseX < x + w && mouseX > x && mouseY < y + h && mouseY > y){
+    fill(0)
+    text(textArray[no],400,520,300)
+      
+      if(arrow == 1){
+        line(startX, startY, endX, endY);
+        fill(0);
+        triangle(endX, endY + 10, endX, endY - 10, endX + 20, endY);
+    }else{
+      
+      if (mouseX < x + w && mouseX > x && mouseY < y + h && mouseY > y) {
+        line(startX, startY, endX, endY);
+        fill(0);
+        triangle(startX, startY + 10, startX, startY - 10, startX - 20, startY);
+      } // end of if
+    }// end of if
+  }// end of if
+}// end of arrow
+
+
+function mousePressed() {
+  print(`X:${mouseX}`);
+  print("y:" + mouseY);
+}// end ofmosuePressed
+
+
+
