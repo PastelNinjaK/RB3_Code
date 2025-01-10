@@ -1,0 +1,136 @@
+let names = ["Matthew","Ralph","John","Sean","Jordan","Alex","Denzel","Tyler","Raven","Michael"];
+let moneyRaised = [100,380,48,396,490,37,39,348,494,286];
+let forms = [true,false,false,true,true,false,false,false,true,true];
+let sceneNum = 1;
+let winner = "press the screen";
+
+function setup() {
+  createCanvas(800, 800);
+
+}// end of setup
+
+function draw() {
+
+  background(200)
+  displayName();
+  displayMoneyRaised();
+  partyParameters();
+  highestCollecter();
+  officialSum();
+
+}// end of draw
+
+
+function mousePressed(){
+  
+  winner = names[floor(random(names.length))];
+
+}// end of mousePressed
+
+
+
+function displayName(){
+  
+  for(let i = 0; i<names.length ; i++){
+    text(names[i] + " ($"+moneyRaised[i]+")  " + forms[i],20,40+i*20);
+
+
+  }// end of for
+  text("Our door prize winner is: " + winner,200,300)
+}// end of displayName
+
+
+
+function displayMoneyRaised(){
+
+  let total = 0;
+  let average = 0; 
+  for(let i = 0; i<moneyRaised.length ; i++){
+      
+      total += moneyRaised[i];
+      average = total/moneyRaised.length;
+      }// end of for
+  
+  text("Total amount collected: $"+ total,200,50);
+  text("Average money collected by person: $"+ average,200,70);
+
+}// end of displayMoneyRaised
+
+
+
+function partyParameters(){
+  let allowed = [];
+  let notAllowed = [];
+  let count = names.length;
+
+    
+  for(let i = 0; i<names.length ; i++){
+    
+    if(moneyRaised[i] > 40){
+        allowed.push(names[i]);
+        count--;
+      }else{
+      notAllowed.push(names[i]);
+      }// end of if
+
+  }// end of for
+  
+    for(let i = 0; i< allowed.length; i++){
+        text(allowed[i],380,90+i*20);  
+      }// end of for 
+    for(let i = 0; i< notAllowed.length; i++){
+         text(notAllowed[i],395,320+i*20);
+      }// end of for 
+    
+  text("People allowed to join the party:",200,90);
+  text("People not allowed to join the party: ",200,320);
+
+     if(count <= 2){
+      text("Bottle Drive is this Saturday",200,360);
+      }else{
+      text("Bottle Drive NOT required",200,360);
+        }// end of if 
+
+}// end of partyParameters
+
+
+
+function highestCollecter(){
+  
+  let mostMoney = 0;
+  let ultimateFundraiser;
+  
+  for(let i = 0; i<names.length; i++){
+    
+    if(moneyRaised[i] > mostMoney){
+      mostMoney = moneyRaised[i];
+      ultimateFundraiser = names[i];
+      }// end of if
+  
+  }// end of for
+  
+  text("Most money raised: " + ultimateFundraiser + " ($"+ mostMoney +")",200,280);
+}// end of highestCollecter
+
+
+
+function officialSum(){
+  
+
+  let allowed1 = [];
+  let notAllowed2 = [];
+  let officialTotal = 0;
+  
+  for(let i = 0; i<moneyRaised.length; i++){ 
+   
+    if(forms[i] === true){
+      allowed1.push(moneyRaised[i])
+      officialTotal += moneyRaised[i];
+    }// end of if
+
+  }// end of for
+  
+
+    text("Fees raised by those with permission to attend: $"+officialTotal,200,400);
+
+}// end of sumIf
