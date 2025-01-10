@@ -1,0 +1,214 @@
+let allHeroes = ["Thor", "Ironman", "Superman", "Storm", "Wonder Woman","Doctor Strange"];
+let isHuman = [false, true, false, true, false,true];
+let allPics = [];
+let allPowers = [];
+let type;
+let sceneNum = 1;
+let hero;
+let choice;
+let rand =-1;
+let angle = 0;
+
+
+function preload() {
+    allPics.push(createImg("Thor.jpg","Thor"));
+    allPics.push(createImg("IronMan.png","Iron Man"));
+    allPics.push(createImg("Superman.png","Superman"));
+    allPics.push(createImg("Storm.png","Storm"));
+    allPics.push(createImg("WonderWoman.png","W.W."));
+    allPics.push(createImg("DoctorStrange.jpg","DoctorStrange")   );
+    for (let i = 0; i < allHeroes.length; i++){
+        allPics[i].hide();
+    }// end of for
+
+}//end preloading of images
+
+function setup() {
+    createCanvas(800, 800);
+    
+    // Powers
+    allPowers.push("God of Thunder");
+    allPowers.push("Rich & Big brain");    
+    allPowers.push("Super\nStrength");
+    allPowers.push("Weather\nmodification");
+    allPowers.push("Divine lightning\nmanipulation");
+    allPowers.push("Magic");
+    
+
+  
+    angleMode(DEGREES);
+  
+
+}//end setup
+
+function draw() {
+    background(100,92,80);    
+    showHeroes();
+    nameAndBox();
+    images();
+  
+}// end draw
+
+function mousePressed() {
+
+    print("MouseX:" + mouseX + "MouseY:" + mouseY);
+    allHeroes.splice(0,1,"Chris Tmas");
+    allHeroes.splice(5,1,"Benidect Wong");
+
+}//end mousePressed
+
+
+function keyPressed(){
+  
+  if(key === "c"){
+    allPowers.splice(0,1,"None");
+    allPowers.splice(2,1,"None");
+    allPowers.splice(4,1,"None"); 
+  }// end of if
+
+  
+  if(key === "1"){
+    sceneNum++;
+    rand = 0;
+    angle=0;
+  }//end of if
+  
+  
+  if(key === "2"){
+    sceneNum++;
+    rand = 1;
+    angle=0;    
+  }//end of if
+
+  
+  if(key === "3"){
+    sceneNum++;   
+    rand = 2;
+    angle=0;
+  }//end of if
+  
+  
+  if(key === "4"){
+    sceneNum++;    
+    rand = 3;
+    angle=0;
+  }//end of if
+
+  
+  if(key === "5"){
+    sceneNum++;
+    rand = 4;
+    angle=0;
+  }//end of if
+  
+  
+  if(key === "6"){
+    sceneNum++;    
+    rand = 5;
+    angle=0;
+  }//end of if
+
+
+}// end of keyPressed 
+
+function showHeroes(){
+   //all pictures
+    imageMode(CORNER);
+  
+  for(let i = 0; i < allHeroes.length; i++ ){
+    text(i+1,i*100+50,390)
+  }// end of for 
+  
+  
+  for(let i = 0; i < allPics.length; i++){
+      image(allPics[i],i*100+50,400,75,75);
+    }// end of for
+ 
+  
+  for(let i = 0; i < allHeroes.length; i++){
+      fill(255);
+      textSize(13);
+      text(allHeroes[i],i*100+50,490);
+    }// end of for
+  
+  
+  for(let i = 0; i < allPowers.length; i++){
+      fill(255);
+      textSize(13);
+      text(allPowers[i],i*100+50,510);
+    }// end of for
+  
+  
+  for(let i = 0; i<isHuman.length; i++){
+    
+      fill(255);
+      textSize(13);
+        
+      if(isHuman[i] === true){
+          type = "Human";
+        
+        }else{
+          type = "Not Human";
+        }// end of if
+
+      text(type,i*100+50,550)
+
+      }// end of for
+
+}// end of showHeroes
+
+
+
+
+
+function nameAndBox(){
+  
+    fill(255);
+    noStroke();
+    textSize(20);
+  
+  
+    if(sceneNum === 1){
+      hero = "Press 1-6 to hire your hero";
+    
+    }else if(sceneNum >=2){
+      hero = allHeroes[rand] ;
+      choice = allPowers[rand];
+    }// end of if
+    
+    text("Your superhero for hire is: " + hero, 50, 100);
+    text("Your heroes Power is: " + choice,400,150 );
+
+  
+    // rectangle
+    noFill();  
+    strokeWeight(5);
+    stroke(255,255,0);
+    rect(140,140,220,220);
+    fill(255,255,0);
+    noStroke();
+    textSize(20);
+
+}// end of nameAndBox
+
+
+
+function images(){
+  
+  if(sceneNum >= 2){
+      
+      //spinning pictures
+      imageMode(CENTER);
+      translate(250, 250);   //the location of the spinning image
+
+      rotate(angle);
+      image(allPics[rand],0,0,angle/2,angle/2);
+      resetMatrix();
+        
+      if(angle<360){
+          angle+=15;
+        }// end of if
+      
+    }// end of if
+
+}//end of images
