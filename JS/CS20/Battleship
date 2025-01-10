@@ -1,0 +1,690 @@
+let xcoords = [];
+let ycoords = [];
+let w = 40;
+let colour = [];
+let colour2 = [];
+let scenenum = 1;
+let picArray = []
+let airCarierX = [];
+let battleshipX = [];
+let uBoatX = [];
+let frigX = [];
+let mineX = [];
+let airCarierY = [];
+let battleshipY = [];
+let uBoatY = [];
+let frigY = [];
+let mineY = [];
+let coordsArrayX = [airCarierX,battleshipX,uBoatX,frigX,mineX];
+let coordsArrayY = [airCarierY,battleshipY,uBoatY,frigY,mineY];
+let returnValsX1 = [];
+let returnValsY1 = [];
+let returnValsX2 = [];
+let returnValsY2 = [];
+let airCarierX2 = [];
+let battleshipX2 = [];
+let uBoatX2 = [];
+let frigX2 = [];
+let mineX2 = [];
+let airCarierY2 = [];
+let battleshipY2 = [];
+let uBoatY2 = [];
+let frigY2 = [];
+let mineY2 = [];
+let eCoordsArrayX = [airCarierX2,battleshipX2,uBoatX2,frigX2,mineX2];
+let eCoordsArrayY = [airCarierY2,battleshipY2,uBoatY2,frigY2,mineY2];
+let airCarierX3 = [];
+let battleshipX3 = [];
+let uBoatX3 = [];
+let frigX3 = [];
+let mineX3 = [];
+let airCarierY3 = [];
+let battleshipY3 = [];
+let uBoatY3 = [];
+let frigY3 = [];
+let mineY3 = [];
+let airCarierX4 = [];
+let battleshipX4 = [];
+let uBoatX4 = [];
+let frigX4 = [];
+let mineX4 = [];
+let airCarierY4 = [];
+let battleshipY4 = [];
+let uBoatY4 = [];
+let frigY4 = [];
+let mineY4 = [];
+let eCoordsArrayX2 = [airCarierX4,battleshipX4,uBoatX4,frigX4,mineX4];
+let eCoordsArrayY2 = [airCarierY4,battleshipY4,uBoatY4,frigY4,mineY4];
+let player = "Anonymous";
+let colorlist = ["red","blue","green","yellow","orange"];
+let titleArray = ["Aircraft CarierX:","Aircraft CarierY:","BattleshipX:","BattleshipY:", "U-BoatX:", "U-BoatY:","FrigateX:","FrigateY:","MinesweeperX:","MinesweeperY:"
+];
+let titleArray2 = ["EAircraft CarierX:","EAircraft CarierY:","EBattleshipX:","EBattleshipY:", "EU-BoatX:", "EU-BoatY:","EFrigateX:","EFrigateY:","EMinesweeperX:","EMinesweeperY:"
+];
+
+let admin = 0;
+let password;
+let fate = "start";
+let start = 0;
+
+
+// function preload(){
+
+//   picArray.push(createImg("images/Sword.png"," ships"));
+//   picArray.push(createImg("images/Sword2.png"," ships"));
+//   for(let i= 0; i<picArray.length; i++){
+//     picArray[i].hide();
+//   }// end of loop
+// }
+
+function setup() {
+  createCanvas(1500, 1000);
+  textAlign(CENTER);
+  asignGrid(0,colour);
+  asignGrid(0,colour2);
+  enemyShips(airCarierX2,airCarierX4,5,0,40,80,480);
+  enemyShips(airCarierY2,airCarierY4,5,1,80,120,50);
+  enemyShips(battleshipX2,battleshipX4,4,1,240,360,480);
+  enemyShips(battleshipY2,battleshipY4,4,40,120,120,50);
+  enemyShips(uBoatX2,uBoatX4,3,0,40,120,480);
+  enemyShips(uBoatY2,uBoatY4,3,1,200,320,50);
+  enemyShips(frigX2,frigX4,3,1,240,300,480);
+  enemyShips(frigY2,frigY4,3,0,240,320,50);
+  enemyShips(mineX2,mineX4,2,0,40,120,480);
+  enemyShips(mineY2,mineY4,2,1,0,40,50);
+
+}
+
+
+function draw() {
+  background(0, 0, 128);
+
+  if (scenenum == 1) {
+    scene1(550, 200, 400, 100);
+  }
+  if(scenenum == 2){
+    scene2();
+  }
+  if(scenenum == 3){
+    scene3();    
+  }
+  if(scenenum == 4){
+    scene4();
+  }
+  if(scenenum == 5){
+    scene5();
+  }
+  if(scenenum == 6){
+    scene6()
+  }
+  if(scenenum == 7){
+    scene7()
+  }
+  
+  if(scenenum === 3){
+    let x1 = same(airCarierX,-1);
+    let y1 = same(airCarierY,-1);
+    let x2 = same(battleshipX,-1);
+    let y2 = same(battleshipY,-1);
+    let x3 = same(uBoatX,-1);
+    let y3 = same(uBoatY,-1);
+    let x4 = same(frigX,-1);
+    let y4 = same(frigY,-1);
+    let x5 = same(mineX,-1);
+    let y5 = same(mineY,-1); 
+    let x6 = same(airCarierX2,-1);
+    let y6 = same(airCarierY2,-1);
+    let x7 = same(battleshipX2,-1);
+    let y7 = same(battleshipY2,-1);
+    let x8 = same(uBoatX2,-1);
+    let y8 = same(uBoatY2,-1);
+    let x9 = same(frigX2,-1);
+    let y9 = same(frigY2,-1);
+    let x10 = same(mineX2,-1);
+    let y10 = same(mineY2,-1); 
+
+    if(x1 === true && y1 === true && x2 === true && y2 === true && x3 === true && y3 === true && x4 === true && y4 === true  && x5 === true && y5 === true && keyIsDown(70)){
+      scenenum = 6
+      print("You lose")
+    }
+    if(x6 === true && y6 === true && x7 === true && y7 === true && x8 === true && y8 === true && x9 === true && y9 === true  && x10 === true && y10 === true && keyIsDown(70)){
+      scenenum = 7
+      print("you win")
+    }
+  }
+
+
+}//end of draw
+
+
+
+function mousePressed(){
+  print(mouseX,mouseY)
+  
+  if(scenenum == 1){
+    button2(550, 200+300, 400, 100,1)
+  }  
+  
+  if(scenenum == 2){
+    shipAssign(airCarierX,airCarierY,airCarierX3,airCarierY3,67,5,"Aircraft CarierX","Aircraft CarierY");
+    shipAssign(battleshipX,battleshipY,battleshipX3,battleshipY3,66,4, "BattleshipX","BattleshipY");
+    shipAssign(uBoatX,uBoatY,uBoatX3,uBoatY3,85,3, "U-BoatX", "U-BoatY");
+    shipAssign(frigX,frigY,frigX3,frigY3,70,3,"FrigateX","FrigateY");
+    shipAssign(mineX,mineY,mineX3,mineY3,77,2,"MinesweeperX","MinesweeperY");
+  }// end of if
+  
+  
+  
+  let k1 = mouseX-50;
+  let k2 = mouseY-50;
+  k1 = k1 - k1 % w;
+  k2 = k2 - k2 % w;
+  print(k1,k2);
+  if(scenenum === 3 && mouseX<950 && mouseX > 540 && mouseY < 450 && mouseY > 50 && keyIsDown(70)){
+    let randX = random(365);
+    let randY = random(365);
+    randX = randX - randX%w;
+    randY = randY - randY%w;
+    print(randX,randY);
+    let x1 = linearSearch2(airCarierX4,k1);
+    let y1 = linearSearch2(airCarierY4,k2);
+    let x2 = linearSearch2(battleshipX4,k1);
+    let y2 = linearSearch2(battleshipY4,k2);
+    let x3 = linearSearch2(uBoatX4,k1);
+    let y3 = linearSearch2(uBoatY4,k2);
+    let x4 = linearSearch2(frigX4,k1);
+    let y4 = linearSearch2(frigY4,k2);
+    let x5 = linearSearch2(mineX4,k1);
+    let y5 = linearSearch2(mineY4,k2);    
+    if((x1 != true && y1 != true) || (x2 != true && y2!= true) || (x3 != true && y3 != true) || (x4!= true && y4 != true) || (x5 != true && y5 != true)){
+      fate = "MISS";
+    }
+    if((x1 === true && y1 === true) || (x2 === true && y2 === true) || (x3 === true && y3 === true) || (x4 === true && y4 === true) || (x5 === true && y5 === true)){
+      fate = "HIT";
+
+    }//end of if
+    attack(eCoordsArrayX, eCoordsArrayY, k1, k2,returnValsX1,returnValsY1);
+    attack(coordsArrayX, coordsArrayY, randX, randY,returnValsX2,returnValsY2);  
+  }
+  
+
+
+
+}// end of mousePressed
+
+
+
+
+function keyPressed(){
+  names(1,78)
+  if(scenenum == 2){
+    if(keyIsDown(73)){
+     scenenum = 4;
+    }// end of if
+  }// end of if
+  if(scenenum == 3){
+    if(keyIsDown(73)){
+     scenenum = 5;
+    }// end of if
+  }// end of if
+  if(scenenum == 4){
+    if(keyIsDown(90)){
+      scenenum = 2;
+    }// end of if
+  }
+  if(scenenum == 5){
+      if(keyIsDown(90)){
+        scenenum = 3;
+      }// end of if
+    }     
+  if(scenenum == 6 || scenenum == 7){
+    if(keyIsDown(82)){
+      restart();
+    }
+  }
+
+
+}// end of keyPressed 
+
+
+
+function scene1(x,y,w,h) {
+  fill(255);
+  textSize(12);
+  text("Press N to asign your name or remain Anonymus",750,150);
+  textSize(40);
+  text("BATTLESHIP WARS", 750, 100);
+  // image(picArray[0],400,50,100,100);
+  // image(picArray[1],400,50,100,100);
+  // image(picArray[0],1010,50,100,100);
+  // image(picArray[1],1010,50,100,100);
+  rect(x,y+300,w,h,5);
+  fill(0);
+  text("Admin",750,565);
+  button(x,y,w,h,1);
+  text("PLAY", 750, 265);
+
+}// end of scene1
+
+
+function scene2(){
+  grid(xcoords,ycoords,colour,50,50,w);
+  textSize(20);
+  button(50,500,100,100,2);
+  fill(255);
+  rect(510,60,200,60,5);
+  fill(0);
+  text("START",100,550);
+  text("Press I for instructions",610,90);
+  fill(255)
+  text("Name: " + player ,610,200);
+  fill(255);
+      
+  for(let i = 0; i<10; i++){
+    text(i*w,65+(i*w),30);
+    text(i*w,20,75+(i*w));
+  }
+  if(admin == 1){
+    rect(180,500,240,50,5);
+    fill(0);
+    text("Welcome to admin mode",300,525);
+    fill(255);
+    arrayPrint(airCarierX2,800,550,40);
+    arrayPrint(airCarierY2,800,580,40);
+    arrayPrint(battleshipX2,800,610,40);
+    arrayPrint(battleshipY2,800,640,40);
+    arrayPrint(uBoatX2,800,670,40);
+    arrayPrint(uBoatY2,800,700,40);
+    arrayPrint(frigX2,800,730,40);
+    arrayPrint(frigY2,800,760,40);
+    arrayPrint(mineX2,800,790,40);
+    arrayPrint(mineY2,800,820,40);
+    for(let i = 0; i<10; i++){
+      fill(255);
+      text(titleArray2[i],700,550+(i*30));  
+    }
+  }// end of if
+
+}// end of scene 2
+
+function scene3(){
+  
+  grid(xcoords,ycoords,colour,50,50,w,coordsArrayX,coordsArrayY);
+  grid(xcoords,ycoords,colour2,550,50,w,eCoordsArrayX,eCoordsArrayY);
+    for(let i = 0; i<10; i++){
+    fill(255);
+    text(i*w,65+(i*w),30);
+    text(i*w,20,75+(i*w));
+    text(480+i*w,565+(i*w),30);
+    text(i*w,500,75+(i*w));
+    text(titleArray[i],100,550+(i*30));
+  
+  }
+  arrayPrint(airCarierX,200,550,40);
+  arrayPrint(airCarierY,200,580,40);
+  arrayPrint(battleshipX,200,610,40);
+  arrayPrint(battleshipY,200,640,40);
+  arrayPrint(uBoatX,200,670,40);
+  arrayPrint(uBoatY,200,700,40);
+  arrayPrint(frigX,200,730,40);
+  arrayPrint(frigY,200,760,40);
+  arrayPrint(mineX,200,790,40);
+  arrayPrint(mineY,200,820,40);
+ 
+  
+  shipAssign2(airCarierX3,airCarierY3,colorlist[0],50);
+  shipAssign2(battleshipX3,battleshipY3,colorlist[1],50);
+  shipAssign2(uBoatX3,uBoatY3,colorlist[2],50);
+  shipAssign2(frigX3,frigY3,colorlist[3],50);
+  shipAssign2(mineX3,mineY3,colorlist[4],50);
+  fill(255)
+  rect(1000,50,100,100);
+  rect(1150,60,200,60,5);  
+  
+
+if(admin === 1){   
+     for(let i = 0; i<10; i++){
+    text(titleArray2[i],500,550+(i*30));  
+  }
+ 
+    arrayPrint(airCarierX2,600,550,40);
+    arrayPrint(airCarierY2,600,580,40);
+    arrayPrint(battleshipX2,600,610,40);
+    arrayPrint(battleshipY2,600,640,40);
+    arrayPrint(uBoatX2,600,670,40);
+    arrayPrint(uBoatY2,600,700,40);
+    arrayPrint(frigX2,600,730,40);
+    arrayPrint(frigY2,600,760,40);
+    arrayPrint(mineX2,600,790,40);
+    arrayPrint(mineY2,600,820,40);
+    shipAssign2(airCarierX4,airCarierY4,colorlist[0],70);
+    shipAssign2(battleshipX4,battleshipY4,colorlist[1],70);
+    shipAssign2(uBoatX4,uBoatY4,colorlist[2],70);
+    shipAssign2(frigX4,frigY4,colorlist[3],70);
+    shipAssign2(mineX4,mineY4,colorlist[4],70);    
+  }
+  fill(0);
+  text(fate,1050,90);
+  text("Press I for instruction",1250,90)
+  
+
+}// end of scene3
+
+
+function scene4(){
+  fill(255);
+  rect(70,60,850,300,5);
+  fill(0);
+  text("To assign coordinates for your ship Press the Following keys\nand the click the grid location of where you want your ship to be played at.\n C - Aircraft Carrier               W - to position your ship to the North\nB - Battleship                       S - to position your ship to the South\nU - U-Boat                           A - to position your ship to the West\nF - Frigate                           D - to position your ship to the East\nM - Minesweeper\n(keys and the mouse have to pressed simultaneously for the system to work)\n(Press Z to go back)",500,100);
+
+}
+
+function scene5(){
+  fill(255);
+  rect(70,60,850,300,5);
+  fill(0);
+  text("To attack the enemy ships, click both the coordinate that you think the enemy ship is in and f key.\nThe box at the right will tell you if it's a hit or a miss.\nIf one of your coordinates is a -1, it means your ship has been hit.(Press Z to go back)",500,100);
+
+}
+
+function scene6(){
+  fill(255)
+  textSize(100)
+  text("YOU LOSE\nPress R to play again",750,500)
+}
+function scene7(){ 
+  fill(255)
+  textSize(100)
+  text("YOU WIN\nPress R to play again",750,500)
+}
+
+
+function grid(array1,array2,colorarray,x,y,w){
+  for(let j = 0; j < array2.length; j++) {
+    for(let i = 0; i <  array1.length; i++) {
+      let dis = dist(mouseX, mouseY,x+array1[i],y+ array2[j]);
+        if(colorarray[j*  array1.length + i] ){
+          if(dis < w/2 && mouseIsPressed && keyIsPressed){
+            colorarray[j * array1.length + i] =! colorarray[j *  array1.length + i];
+            }
+            fill("white");
+          }else{
+            fill("black")
+          }
+          rect(x+array1[i], y+array2[j], w, w);
+    }// end of loop
+  }// end of loop
+}// end of grid
+
+
+
+
+
+
+function asignGrid(bias,array){
+    for (let i = 0; i < 10; i++) {
+        xcoords[i] = bias + i * w;
+        ycoords[i] = bias + i * w;
+    }
+    for (let i = 0; i < 100; i++) {
+        array[i] = true;
+    }
+}// end of assignGrid  
+
+
+
+function shipAssign(array1,array2,array3,array4,keycode,num,titleX,titleY){
+  let k1 = mouseX-50
+  let k2 = mouseY-50
+  k1 = k1 - k1% w
+  k2 = k2 - k2% w
+ 
+
+  if(keyIsDown(keycode) && keyIsDown(87)){
+    print(titleX,titleY)
+    for(let i = 0; i<num;i++){
+      array1.push(k1)
+      array2.push(k2-(i*w))
+      array3.push(k1)
+      array4.push(k2-(i*w))
+      print(array1[i], array2[i])
+    }//end of loop
+  }else if(keyIsDown(keycode) && keyIsDown(83)){
+    print(titleX,titleY)
+    for(let i = 0; i<num;i++){  
+      array1.push(k1)
+      array2.push(k2+(i*w))
+      array3.push(k1)
+      array4.push(k2+(i*w))
+      print(array1[i], array2[i])
+    }
+  }else if(keyIsDown(keycode) && keyIsDown(65)) {
+    print(titleX,titleY)
+    for(let i = 0; i<num;i++){
+      array1.push(k1-(i*w))
+      array2.push(k2)
+      array3.push(k1-(i*w))
+      array4.push(k2)   
+      print(array1[i], array2[i])
+    }// end of loop
+  }else if(keyIsDown(keycode) && keyIsDown(68)){
+    print(titleX,titleY)
+    for(let i = 0;i<num; i++){
+      array1.push(k1+(i*w))
+      array2.push(k2)
+      array3.push(k1+(i*w))
+      array4.push(k2)    
+      print(array1[i], array2[i])
+   
+    }// end of loop
+  }// end of if
+}// end of shipAssign
+
+
+
+function button(x,y,w,h,num){
+    fill(255)
+    rect(x,y,w,h,5)
+    fill(0)
+    if (mouseIsPressed && scenenum === num && mouseX <= x+w && mouseX >= x && mouseY <= y+h && mouseY >= y ) {
+    scenenum++; 
+  }// end of if
+}// end of button
+
+function button2(x,y,w,h,num){
+    fill(255)
+    rect(x,y,w,h,5)
+    fill(0)
+    
+    if (scenenum === num && mouseX <= x+w && mouseX >= x && mouseY <= y+h && mouseY >= y ) {
+      password = window.prompt("Type Your Password ");
+      if(password === "Your Password"){
+        scenenum++;      
+        admin++;
+      }else{
+        scenenum++;
+        print("Access Denied");
+      }
+
+  }    
+}// end of button
+
+function linearSearch(array1, returnVals, searchTerm) {
+  for (let i = 0; i < array1.length; i++) {
+    for (let ii = 0; ii < array1[i].length; ii++) {
+      if (array1[i][ii] === searchTerm) {
+        returnVals.push([i, ii]);
+
+      }
+    }
+  }
+
+}//end linearSearch
+function attack(array1, array2, c1, c2, array3, array4) {
+  let coords1 = [];
+  let coords2 = [];
+
+  linearSearch(array1, coords1, c1);
+  linearSearch(array2, coords2, c2);
+
+  for (let i = 0; i < coords1.length; i++) {
+    let coordX = coords1[i];
+    for (let j = 0; j < coords2.length; j++) {
+      let coordY = coords2[j];
+      if (coordX[0] === coordY[0] && coordX[1] === coordY[1]) {
+        array1[coordX[0]][coordX[1]] = -1; 
+        array2[coordY[0]][coordY[1]] = -1;
+      }
+    }
+  }
+}
+
+
+
+function names(num,keycode){
+  if(scenenum === num && keyIsDown(keycode)) {
+    player = window.prompt("What is your name?")
+    }
+}
+
+
+
+function enemyShips(rand,rand2,num,condition,start,end,num2){
+  let cord = random(start-1,end+1)+num2
+  cord = cord - cord % w
+  let mid = ((start+end)/2)+start
+  
+  
+  if(cord < mid){
+    if(condition == 1){
+      for(let i = 0; i<num;i++){
+        rand[i] = cord
+        rand2[i] = cord
+      }
+    }else{
+       for(let i = 0; i<num;i++){
+        rand[i] = cord - (i*w)
+        rand2[i] = cord - (i*w)
+       }
+    }
+  }
+  
+  if(cord > mid){
+    if(condition == 1){
+      for(let i = 0; i<num;i++){
+        rand[i] = cord
+        rand2[i] = cord        
+      }
+    }else{
+       for(let i = 0; i<num;i++){
+        rand[i] = cord + (i*w)
+        rand2[i] = cord + (i*w)
+       }
+    }
+  }
+}
+function shipAssign2(arrayX,arrayY,colur,offset){
+  for(let i = 0; i<arrayX.length ; i++){
+    fill(colur)
+    rect(arrayX[i]+offset,arrayY[i]+50,w)
+  }
+}
+
+
+function arrayPrint(array,x,y,factor){
+  for(let i = 0; i<array.length;i++){
+    text(array[i],x + (i*factor),y)
+  }
+}
+
+
+function linearSearch2(arrayX, searchTerm) {
+  for (let i = 0; i < arrayX.length; i++){ 
+      if (arrayX[i] === searchTerm) {
+        return true;
+      }
+    }
+  return false;
+}//end linearSearch
+
+
+function same(array,num) {
+    for (let i = 0; i < array.length; i++) {
+      let constant = num;
+        if(array[i] !== constant) {
+          return false;
+        }
+    }
+    return true; // If all arrays pass the check, return true.
+}
+
+  
+function restart(){
+  w = 40;
+  scenenum = 1;
+  airCarierX = [];
+  battleshipX = [];
+  uBoatX = [];
+  frigX = [];
+  mineX = [];
+  airCarierY = [];
+  battleshipY = [];
+  uBoatY = [];
+  frigY = [];
+  mineY = [];
+  coordsArrayX = [airCarierX, battleshipX, uBoatX, frigX, mineX];
+  coordsArrayY = [airCarierY, battleshipY, uBoatY, frigY, mineY];
+  returnValsX1 = [];
+  returnValsY1 = [];
+  returnValsX2 = [];
+  returnValsY2 = [];
+  airCarierX2 = [];
+  battleshipX2 = [];
+  uBoatX2 = [];
+  frigX2 = [];
+  mineX2 = [];
+  airCarierY2 = [];
+  battleshipY2 = [];
+  uBoatY2 = [];
+  frigY2 = [];
+  mineY2 = [];
+  eCoordsArrayX = [airCarierX2, battleshipX2, uBoatX2, frigX2, mineX2];
+  eCoordsArrayY = [airCarierY2, battleshipY2, uBoatY2, frigY2, mineY2];
+  airCarierX3 = [];
+  battleshipX3 = [];
+  uBoatX3 = [];
+  frigX3 = [];
+  mineX3 = [];
+  airCarierY3 = [];
+  battleshipY3 = [];
+  uBoatY3 = [];
+  frigY3 = [];
+  mineY3 = [];
+  airCarierX4 = [];
+  battleshipX4 = [];
+  uBoatX4 = [];
+  frigX4 = [];
+  mineX4 = [];
+  airCarierY4 = [];
+  battleshipY4 = [];
+  uBoatY4 = [];
+  frigY4 = [];
+  mineY4 = [];
+  eCoordsArrayX2 = [airCarierX4, battleshipX4, uBoatX4, frigX4, mineX4];
+  eCoordsArrayY2 = [airCarierY4, battleshipY4, uBoatY4, frigY4, mineY4];
+  player = "Anonymous";
+  admin = 0;
+  start = 0
+  asignGrid(0,colour);
+  asignGrid(0,colour2);
+  enemyShips(airCarierX2,airCarierX4,5,0,0,40,480);
+  enemyShips(airCarierY2,airCarierY4,5,1,80,120,50);
+  enemyShips(battleshipX2,battleshipX4,4,1,200,360,480);
+  enemyShips(battleshipY2,battleshipY4,4,40,120,120,50);
+  enemyShips(uBoatX2,uBoatX4,3,0,40,120,480);
+  enemyShips(uBoatY2,uBoatY4,3,1,200,320,50);
+  enemyShips(frigX2,frigX4,3,1,240,300,480);
+  enemyShips(frigY2,frigY4,3,0,240,320,50);
+  enemyShips(mineX2,mineX4,2,0,40,120,480);
+  enemyShips(mineY2,mineY4,2,1,0,40,50);
+}
